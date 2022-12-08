@@ -2,30 +2,30 @@
 #include "my_mat.h"
 #define n 10
 
-void functionOne(int(*arrPointer)[n]){
-    int i, j;
+void functionOne(int arr[n][n]){
+    int i = 0, j = 0;
     //printf("please type in numbers for matrix %d x %d\n", n, n);
     for(i=0; i<n; i++){
         for(j=0; j<n; j++){
-            scanf("%d", &(*(*(arrPointer+i)+j)));
+            scanf("%d", &arr[n][n]);
         }
     }
 }
 
-void functionTwo(int i, int j,int (*arrPointer)[n]){
-    if(*(*(arrPointer+i)+j) != 0){
+void functionTwo(int i, int j,int arr[n][n]){
+    if(arr[i][j] != 0){
         printf("True\n");
     } else{
         printf("False\n");
     }
 }
 
-void functionThree(int i, int j, int (*arrPointer)[n]){
+void functionThree(int i, int j, int arr[n][n]){
     //algo here
-    int k, x, y, arrForFunctionThree[n][n];
+    int k, x, y, arrForFunctionThree[n][n] = {{0}};
     for(x = 0; x<n; x++){
         for(y = 0; y<n; y++){
-            arrForFunctionThree[x][y] = *(*(arrPointer+x)+y);
+            arrForFunctionThree[x][y] = arr[x][y];
         }
     }
 
@@ -48,7 +48,4 @@ void functionThree(int i, int j, int (*arrPointer)[n]){
         printf("%d\n", arrForFunctionThree[i][j]);
         
     }
-
-
-
 }
