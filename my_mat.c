@@ -2,6 +2,8 @@
 #include "my_mat.h"
 #define n 10
 
+int arr[n][n];
+
 void functionOne(int arr[n][n]){
     int i = 0, j = 0;
     //printf("please type in numbers for matrix %d x %d\n", n, n);
