@@ -1,0 +1,25 @@
+CC = gcc
+AR = ar -rcs
+Flags = -Wall -g
+Objects_mat  = my_mat.o
+Objects_main = main.o
+
+
+.PHONY:  all clean
+
+all: connections my_lib
+
+connections: $(Objects_main) makematrix.a 
+	$(CC) $(Flags) -o connections $(Objects_main) makematrix.a -lm
+my_lib: makematrix.a
+makematrix.a: $(Objects_mat)
+	$(AR) makematrix.a $(Objects_mat)
+
+my_mat.o: my_mat.c my_mat.h
+	$(CC) $(Flags) -c my_mat.c 
+
+main.o: main.c my_mat.h
+	$(CC) $(Flags) -c main.c
+
+clean:
+	rm -f *.o *.a connections
