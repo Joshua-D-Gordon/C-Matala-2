@@ -3,8 +3,13 @@
 
 #define n 10
 char c = 0;
-int arr[n][n] = {{0}};// our matrix
+int arr[n][n];// our matrix
 int i,j; // index's for function 2 & 3
+for(i = 0; i<n ;i++){
+    for(j = 0; j<n; j++){
+        arr[i][j] = 0;
+    }
+}
 
 
 int main(void) {
