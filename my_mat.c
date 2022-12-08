@@ -2,52 +2,50 @@
 #include "my_mat.h"
 #define n 10
 
-int arr[n][n];
+int g[n][n];
 
-void functionOne(int arr[n][n]){
-    int i = 0, j = 0;
-    //printf("please type in numbers for matrix %d x %d\n", n, n);
-    for(i=0; i<n; i++){
-        for(j=0; j<n; j++){
-            scanf("%d", &arr[n][n]);
+int minimum(int a, int b);
+
+void functionOne(int g [n][n]) {
+    int get_num;
+    for (int i = 0; i <n ; i++) {
+        for (int j = 0; j <n ; j++) {
+            scanf("%d" , &get_num);
+            g[i][j] = get_num;
         }
     }
+    algorithm(g);
 }
 
-void functionTwo(int i, int j,int arr[n][n]){
-    if(arr[i][j] != 0){
-        printf("True\n");
-    } else{
-        printf("False\n");
-    }
-}
-
-void functionThree(int i, int j, int arr[n][n]){
-    //algo here
-    int k, x, y, arrForFunctionThree[n][n] = {{0}};
-    for(x = 0; x<n; x++){
-        for(y = 0; y<n; y++){
-            arrForFunctionThree[x][y] = arr[x][y];
-        }
-    }
-
-    for(k = 0; k<n; k++){
-        for(x = 0; x<n; x++){
-            for(y = 0; y<n; y++){
-                if(arrForFunctionThree[x][y]> arrForFunctionThree[x][k] + arrForFunctionThree[k][y]){
-                    arrForFunctionThree[x][y] = arrForFunctionThree[x][k] + arrForFunctionThree[k][y];
+void algorithm(int graph[n][n]){  
+    for (int k = 0; k < n; k++){
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++){
+                if(i!=j){
+                    if (graph[i][k] != 0 && graph[k][j] != 0 && graph[i][j] == 0) {
+                        graph[i][j] = graph[i][k] + graph[k][j];
+                    }
+                    if (graph[i][k] != 0 && graph[k][j] != 0 && graph[i][j] != 0) {
+                        graph[i][j] = minimum(graph[i][j], graph[i][k] + graph[k][j]);
+                    }
                 }
-                
             }
         }
-    
     }
-    //printing shortest path or -1 if no path exists
-    if(arrForFunctionThree[i][j] == 0){//  node is its distance to itself
-        printf("%d\n",-1);
+}
+int Shortest_Path(int a, int b,int graph[n][n]) {
+    return graph[a][b];
+}
+
+int functionTwo(int src, int dest,int graph[n][n]) {
+    if(graph[src][dest]!=0){
+        return 1;
     }
     else{
-        printf("%d\n", arrForFunctionThree[i][j]);
-        
+        return 0;
     }
+}
+int minimum(int a, int b){
+    if(a < b) return a;
+    return b;
 }
